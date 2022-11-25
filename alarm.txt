@@ -1,0 +1,17 @@
+using psudocode
+
+lastErrors : DateTime[] = []
+
+lastAlarm = null;
+
+function logError( error ){
+    [..] //do log stuff
+
+    lastErrors = lastErrors.filter(i=> i < Date.Now - 1 *60 *1000);
+    lastErrors.Add(Date.Now)
+
+    if(lastErrors.len() > 9 && (!lastAlarm || lastAlarm < DateTime.Now - 10 *60 *1000)){
+        [...] //send alarm
+        lastAlarm = DateTime.Now
+    }
+}
